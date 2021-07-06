@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="Ggixly" name="DualBandFilter" projectType="audioplug" jucerVersion="5.3.2">
+<JUCERPROJECT id="Ggixly" name="DualBandFilter" projectType="audioplug" displaySplashScreen="1"
+              jucerFormatVersion="1" pluginFormats="buildStandalone,buildVST,buildVST3"
+              pluginVSTCategory="kPlugCategEffect">
   <MAINGROUP id="sDPItZ" name="DualBandFilter">
     <GROUP id="{08F89E5B-E3A9-14AF-4D47-9679EC82C198}" name="Source">
       <FILE id="lDzzLb" name="PluginProcessor.cpp" compile="1" resource="0"
@@ -10,6 +12,10 @@
       <FILE id="nksyjl" name="PluginEditor.cpp" compile="1" resource="0"
             file="Source/PluginEditor.cpp"/>
       <FILE id="FpssSg" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+      <FILE id="mabhEJ" name="DualBandFilter.cpp" compile="1" resource="0"
+            file="Source/DualBandFilter.cpp"/>
+      <FILE id="VQFgCH" name="DualBandFilter.h" compile="0" resource="0"
+            file="Source/DualBandFilter.h"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
@@ -55,6 +61,29 @@
         <MODULEPATH id="juce_audio_formats" path="../../../JUCE 5.3.2/modules"/>
       </MODULEPATHS>
     </VS2017>
+    <VS2019 targetFolder="Builds/VisualStudio2019">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" enablePluginBinaryCopyStep="1" vstBinaryLocation="C:\TR_FILES\VSTPlugins\TR"
+                       vst3BinaryLocation="C:\TR_FILES\VSTPlugins\TR"/>
+        <CONFIGURATION isDebug="0" name="Release" enablePluginBinaryCopyStep="1" vstBinaryLocation="C:\TR_FILES\VSTPlugins\TR"
+                       vst3BinaryLocation="C:\TR_FILES\VSTPlugins\TR"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_gui_extra"/>
+        <MODULEPATH id="juce_gui_basics"/>
+        <MODULEPATH id="juce_graphics"/>
+        <MODULEPATH id="juce_events"/>
+        <MODULEPATH id="juce_dsp"/>
+        <MODULEPATH id="juce_data_structures"/>
+        <MODULEPATH id="juce_core"/>
+        <MODULEPATH id="juce_audio_utils"/>
+        <MODULEPATH id="juce_audio_processors"/>
+        <MODULEPATH id="juce_audio_plugin_client"/>
+        <MODULEPATH id="juce_audio_formats"/>
+        <MODULEPATH id="juce_audio_devices"/>
+        <MODULEPATH id="juce_audio_basics"/>
+      </MODULEPATHS>
+    </VS2019>
   </EXPORTFORMATS>
   <MODULES>
     <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>

@@ -1,13 +1,3 @@
-/*
-  ==============================================================================
-
-    This file was auto-generated!
-
-    It contains the basic framework code for a JUCE plugin editor.
-
-  ==============================================================================
-*/
-
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
@@ -25,7 +15,7 @@ DualBandFilterAudioProcessorEditor::DualBandFilterAudioProcessorEditor(DualBandF
 	orderListComboBox.setEditableText(false);
 	orderListComboBox.setJustificationType(Justification::centred);
 	orderListComboBox.addItemList(orderList, 1);
-	orderListComboBox.setSelectedItemIndex(processor.ambisonicOrderSelected - 1, dontSendNotification);
+	orderListComboBox.setSelectedItemIndex(processor.getOrder() - 1, dontSendNotification);
 	orderListComboBox.addListener(this);
 	addAndMakeVisible(orderListComboBox);
 
@@ -44,7 +34,7 @@ void DualBandFilterAudioProcessorEditor::paint (Graphics& g)
 
     g.setColour (Colours::white);
     g.setFont (15.0f);
-    g.drawFittedText (orderList[processor.ambisonicOrderSelected - 1] + ", crossover freq: " + String(processor.xOverFreqs[processor.ambisonicOrderSelected - 1]) + " Hz", getLocalBounds(), Justification::centred, 1);
+    g.drawFittedText (orderList[processor.getOrder() - 1] + ", crossover freq: " + String(processor.getCurrentXFreq()) + " Hz", getLocalBounds(), Justification::centred, 1);
 }
 
 void DualBandFilterAudioProcessorEditor::resized()
@@ -54,6 +44,6 @@ void DualBandFilterAudioProcessorEditor::resized()
 
 void DualBandFilterAudioProcessorEditor::comboBoxChanged(ComboBox* comboBoxThatHasChanged)
 {
-	processor.ambisonicOrderSelected = orderListComboBox.getSelectedItemIndex() + 1;
+	processor.setOrder(orderListComboBox.getSelectedItemIndex() + 1);
 	repaint();
 }

@@ -1,20 +1,8 @@
-/*
-  ==============================================================================
-
-    This file was auto-generated!
-
-    It contains the basic framework code for a JUCE plugin processor.
-
-  ==============================================================================
-*/
-
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include <vector>
-#include <random>
+#include "DualBandFilter.h"
 
-using std::vector;
 
 //==============================================================================
 /**
@@ -59,23 +47,26 @@ public:
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
-	//public variables 
-	int ambisonicOrder, ambisonicOrderSelected = 1;
-	Array<double> xOverFreqs = { 690, 1250, 1831, 2423, 3022 };
+    void setOrder(int order)
+    {
+        m_dbFilter.init(getSampleRate(), order);
+    }
+
+    int getOrder()
+    {
+        return m_dbFilter.getCurrentOrder();
+    }
+
+    double getCurrentXFreq()
+    {
+        return m_dbFilter.getCurrentXFreq();
+    }
 
 private:
     //==============================================================================
-	OwnedArray<IIRFilter> lowPassFilterArray, highPassFilterArray;		
-	AudioBuffer<float> lowPassedBuffer, highPassedBuffer;
-	vector<vector<double>> coeffsGainCorrected {
-		{-1.41415265612978, -0.816531743649337,	0, 0, 0, 0},
-		{-1.58112863177163, -1.22474223817030, -0.632463690644260, 0, 0, 0},
-		{-1.66838610529516, -1.43664727526966, -1.02145240045448, -0.508189586539144, 0, 0},
-		{-1.72075018733317, -1.55934381976132, -1.25924096053497, -0.862311050887111, -0.423065259648094, 0},
-		{-1.75570426339051, -1.63719422561165, -1.41217329137904, -1.10328983994383, -0.741301139024051, -0.361642089896808}
-	};
 
-	void setFilterCoeffs(double cutoff, double sampleRate);
+    DualBandFilter m_dbFilter;
+
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DualBandFilterAudioProcessor)
 };
