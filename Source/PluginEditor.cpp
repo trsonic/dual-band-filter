@@ -10,6 +10,8 @@ DualBandFilterAudioProcessorEditor::DualBandFilterAudioProcessorEditor(DualBandF
 	orderList.add("3rd Order");
 	orderList.add("4th Order");
 	orderList.add("5th Order");
+	orderList.add("6th Order");
+	orderList.add("7th Order");
 
 	// combobox
 	orderListComboBox.setEditableText(false);
